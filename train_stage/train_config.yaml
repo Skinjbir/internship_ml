@@ -1,25 +1,15 @@
-minio:
-  endpoint_url: http://10.17.0.243:9000
-  access_key: minioadmin
-  secret_key: minioadmin
-  secure: false
-
-# Configuration for the dataset
-data:
-  bucket: main-bucket
-  path: data/processed/cleaned_data.csv
+dataset:
+  bucket_name: main-bucket
+  object_key: data/processed/cleaned_data.csv
+  local_path: datas
 
 training:
-  batch_size: 256
+  batch_size: 128
   epochs: 1
 
-model:
-  bucket_name: main-bucket
-  save_path: /models/autoencoder_model.keras
- 
-
-anomaly_detection:
+anomalies:
   percentile: 95
-  metric: mse
+  metric: 'mse'  
 
-
+model:
+  save_path: /models/autoencoder_model.h5

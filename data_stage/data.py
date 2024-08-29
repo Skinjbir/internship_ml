@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %
 def main():
     try:
         # Initialize Loader with configuration
-        loader = Loader(config_path='data_config.yaml')
+        loader = Loader(config_path='/app/data_stage/data_config.yaml')
 
         # Data ingestion
         df = loader.load_data_from_minio()

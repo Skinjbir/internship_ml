@@ -1,8 +1,6 @@
 import numpy as np
 from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_score
 import logging
-import json
-import io
 
 def detect_anomalies(autoencoder, X_test, percentile=95, metric='mse'):
     """
@@ -19,6 +17,7 @@ def detect_anomalies(autoencoder, X_test, percentile=95, metric='mse'):
     - errors: The reconstruction errors for each sample.
     - threshold: The anomaly threshold determined by the chosen percentile.
     """
+
     logging.info("Starting anomaly detection using autoencoder.")
 
     # Get the autoencoder's reconstructions
@@ -56,6 +55,7 @@ def evaluate_anomalies(y_test, outliers, errors):
     Returns:
     - metrics: A dictionary containing precision, recall, f1_score, and auc.
     """
+
     logging.info("Evaluating anomaly detection performance.")
 
     precision = precision_score(y_test, outliers)
@@ -73,34 +73,3 @@ def evaluate_anomalies(y_test, outliers, errors):
     logging.info(f"Evaluation Metrics - Precision: {precision:.4f}, Recall: {recall:.4f}, F1 Score: {f1:.4f}, AUC: {auc:.4f}")
 
     return metrics
-
-
-def save_metrics_to_minio(metrics, bucket_name, file_name, minio_client):
-    """
-    Save the metrics to a JSON file and upload it to MinIO.
-
-    Parameters:
-    - metrics: dict, the metrics to save.
-    - bucket_name: str, the name of the MinIO bucket.
-    - file_name: str, the name of the file in MinIO.
-    - minio_client: Minio, the MinIO client instance.
-    """
-    try:
-        # Convert metrics to JSON
-        metrics_json = json.dumps(metrics, indent=4)
-        
-        # Create a bytes buffer for the JSON data
-        buffer = io.BytesIO(metrics_json.encode('utf-8'))
-        
-        # Upload the JSON file to MinIO
-        minio_client.put_object(
-            bucket_name,
-            file_name,
-            buffer,
-            buffer.getbuffer().nbytes,
-            content_type='application/json'
-        )
-        
-        logging.info(f"Metrics saved to MinIO bucket {bucket_name}/{file_name}")
-    except Exception as e:
-        logging.error(f"Error saving metrics to MinIO: {e}")

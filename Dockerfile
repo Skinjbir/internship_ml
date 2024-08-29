@@ -9,16 +9,25 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir --timeout=360 -r requirements.txt
 
-# Copy the application files
-COPY train_stage/train.py data_stage/data.py /app/
-COPY train_stage/libt /app/libt
-COPY data_stage/libd /app/libd
-COPY train_stage/train_config.yaml /app/train_config.yaml
-COPY data_stage/data_config.yaml /app/data_config.yaml
+
+COPY train_stage/train.py  /app/train_stage/train.py
+COPY data_stage/data.py /app/data_stage/data.py
+
+
+COPY train_stage/libt /app/train_stage/libt
+COPY data_stage/libd /app/data_stage/libd
+
+COPY data_stage/data_config.yaml /app/data_stage/data_config.yaml
+COPY train_stage/train_config.yaml /app/train_stage/train_config.yaml
+
 COPY web_app/server.py /app/web_app/server.py
 COPY web_app/utils /app/web_app/utils
 COPY web_app/server_config.yaml /app/web_app/server_config.yaml
 COPY start.sh .
+
+
+
+
 
 
 
