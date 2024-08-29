@@ -2,3 +2,4 @@ Flask
 minio
 pandas
 scikit-learn
+pyyaml

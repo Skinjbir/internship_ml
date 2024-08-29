@@ -15,7 +15,7 @@ def main():
     logging.basicConfig(level=logging.INFO)
 
     # Path to your configuration file
-    config_path = 'train_config.yaml'
+    config_path = '/app/train_config.yaml'
 
     # Load configuration
     config = load_config(config_path)

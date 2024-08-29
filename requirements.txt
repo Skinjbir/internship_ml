@@ -13,3 +13,8 @@ pandas
 scikit-learn
 boto3
 flask
+Flask
+minio
+pandas
+scikit-learn
+pyyaml

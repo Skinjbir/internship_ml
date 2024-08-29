@@ -7,16 +7,19 @@ import os
 import tempfile
 from minio import Minio
 import io
-
+import yaml
 # Configure logging to include DEBUG level messages
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Initialize MinIO client
+with open('./train_config.yaml', 'r') as config_file:
+    config = yaml.safe_load(config_file)
+
+# Initialize MinIO client using configuration from YAML file
 minio_client = Minio(
-    "localhost:9000",  # MinIO endpoint
-    access_key="minioadmin",
-    secret_key="minioadmin",
-    secure=False  # Change to True if using HTTPS
+    endpoint=config['minio']['endpoint_url'],
+    access_key=config['minio']['access_key'],
+    secret_key=config['minio']['secret_key'],
+    secure=config['minio']['secure']
 )
 
 class AutoencoderModel:
