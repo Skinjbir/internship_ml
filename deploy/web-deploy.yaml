@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-prediction-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-prediction
+  template:
+    metadata:
+      labels:
+        app: web-prediction

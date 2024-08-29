@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir --timeout=120 -r requirements.txt
+    pip install --no-cache-dir --timeout=360 -r requirements.txt
 
 # Copy the application files in a single command to reduce layers
 COPY /train_stage/train.py /data_stage/data.py /app/

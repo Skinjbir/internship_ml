@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-train-stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-train-stage
+  template:
+    metadata:
+      labels:
+        app: data-train-stage
+    spec:
+      containers:
+      - name: data-train-stage
+        image: your-dockerhub-username/data-train-stage-image:latest
+        ports:
+        - containerPort: 8080

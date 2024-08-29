@@ -4,7 +4,7 @@ import pandas as pd
 from utils.config_loader import load_config
 from utils.minio_utils import initialize_minio_client, load_model_from_minio
 from utils.anomalie import detect_anomalies
-
+import yaml
 app = Flask(__name__)
 
 

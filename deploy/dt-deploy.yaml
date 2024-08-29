@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-training-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-training
+  template:
+    metadata:
+      labels:
+        app: data-training
+    spec:
+      containers:
+      - name: data-training
+        image: <your-data-training-image>
+        
