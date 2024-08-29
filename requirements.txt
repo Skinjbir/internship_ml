@@ -1,0 +1,15 @@
+boto3
+pandas
+numpy
+scikit-learn
+joblib
+flask
+tensorflow
+pyyaml
+minio
+pyyaml
+
+pandas
+scikit-learn
+boto3
+flask

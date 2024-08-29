@@ -1,0 +1,13 @@
+minio:
+  endpoint: 172.21.0.2:9000
+  access_key: minioadmin
+  secret_key: minioadmin
+  secure: false
+
+model:
+  bucket_name: "main-bucket"
+  model_filename: "models/autoencoder_model.keras"
+
+anomaly_detection:
+  threshold: 0.05
+  metric: "mse"

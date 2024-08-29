@@ -1,0 +1,4 @@
+Flask
+minio
+pandas
+scikit-learn

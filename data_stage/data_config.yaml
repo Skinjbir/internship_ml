@@ -1,0 +1,20 @@
+minio:
+  endpoint_url: http://192.168.0.146:9000
+  access_key: minioadmin
+  secret_key: minioadmin
+
+dataset:
+  bucket_name: main-bucket
+  object_key: data/processed/cleaned_data.csv
+  local_path: datas
+
+training:
+  batch_size: 128
+  epochs: 1
+
+anomalies:
+  percentile: 95
+  metric: mse
+
+model:
+  save_path: /models/autoencoder_model.h5
