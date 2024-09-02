@@ -4,6 +4,7 @@ from io import StringIO
 import boto3
 import yaml
 
+
 class Loader:
     def __init__(self, config_path: str):
         """

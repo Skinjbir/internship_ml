@@ -1,9 +1,0 @@
-boto3
-pandas
-numpy
-scikit-learn
-joblib
-flask
-tensorflow
-pyyaml
-minio

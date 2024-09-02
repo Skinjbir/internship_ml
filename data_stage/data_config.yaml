@@ -1,5 +1,5 @@
 minio:
-  endpoint_url: http://10.17.0.243:9000
+  endpoint_url: http://172.17.0.1:9001
   access_key: minioadmin
   secret_key: minioadmin
 
@@ -8,9 +8,14 @@ dataset:
   object_key: data/processed/cleaned_data.csv
   local_path: datas
   
-anomalies:
-  percentile: 95
-  metric: mse
 
-model:
-  save_path: /models/autoencoder_model.h5
+
+minio:
+  endpoint_url: "http://localhost:9000"
+  access_key: "minioadmin"
+  secret_key: "minioadmin"
+
+data:
+  bucket: "main-bucket"
+  path: "data/processed/cleaned_data.csv"
+  original_data: "data/raw/creditcard.csv"

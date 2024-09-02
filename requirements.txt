@@ -18,3 +18,4 @@ minio
 pandas
 scikit-learn
 pyyaml
+Minio

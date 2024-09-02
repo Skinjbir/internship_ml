@@ -2,20 +2,8 @@ import pandas as pd
 import logging
 
 class DataSplitter:
-    def __init__(self, path: str) -> None:
-        self.data = self.load_data(path)
-
-    def load_data(self, path: str) -> pd.DataFrame:
-        """
-        Load the processed data from a CSV file.
-        """
-        try:
-            data = pd.read_csv(path)
-            logging.info(f"Data loaded successfully from {path}.")
-            return data
-        except Exception as e:
-            logging.error(f"Failed to load data from {path}: {e}")
-            raise e
+    def __init__(self, dataset: pd.DataFrame) -> None:
+        self.data = dataset  
 
     def check_column_exists(self, column_name: str) -> None:
         """
@@ -66,5 +54,5 @@ class DataSplitter:
             logging.error(f"Key error: {ke}")
             raise ke
         except Exception as e:
-            logging.error("Failed to split data using custom logic.")
+            logging.error(f"Failed to split data using custom logic. Error: {e}")
             raise e

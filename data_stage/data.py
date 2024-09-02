@@ -6,33 +6,31 @@ from libd.Cleaner import Cleaner
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def main():
+    """
+    Main function to orchestrate data loading and cleaning.
+    - Loads data from MinIO using the Loader class.
+    - Cleans the data using the Cleaner class.
+    - Logs the status and details of the operations.
+    """
     try:
         # Initialize Loader with configuration
-        loader = Loader(config_path='/app/data_stage/data_config.yaml')
-
+        loader = Loader(config_path='./data_config.yaml')
+        
         # Data ingestion
         df = loader.load_data_from_minio()
-        logging.info("Data loaded successfully.")
-        logging.debug(f"Data sample:\n{df.head()}")
-
-        # Initialize Cleaner with configuration and data
-        scale_method = loader.config['cleaning']['scale_method']
+       
+        # Initialize Cleaner with configuration
         cleaner = Cleaner(
-            data=df,
-            scale_method=scale_method,
             bucket_name=loader.bucket_name,
             config_path='data_config.yaml'
         )
-        cleaner.clean_data(file_name='cleaned_data.csv')
 
-        # Log cleaned data and save it
+        # Clean the data
+        cleaner.clean_data(data=df, file_name='cleaned_data.csv', target_column='Class')
+
+        # Log cleaned data
         cleaned_data = cleaner.cleaned_data
-        logging.debug(f"Cleaned data:\n{cleaned_data.head()}")
-        cleaner.save_cleaned_data()
 
-        # Signal completion
-        with open('/data/s.signal', 'w') as f:
-            f.write('done')
     except Exception as e:
         logging.error(f"An error occurred: {e}")
 
